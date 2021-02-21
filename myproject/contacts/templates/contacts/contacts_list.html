@@ -1,0 +1,99 @@
+
+{% extends 'base.html' %}
+
+
+{% block mainblock %}
+
+
+<!-- Datatables Content -->
+
+
+<!-- END Datatables Content -->
+<!-- Datatables Content -->
+
+  <!-- END Datatables Content -->
+
+   <!-- Datatables Header -->
+   <div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-table"></i>Contacts List<br><small>you can add, edit and delete your data!</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Contacts</li>
+    <li><a href="">List</a></li>
+</ul>
+<!-- END Datatables Header -->
+
+
+
+  <!-- Datatables Content -->
+  <div class="block full">
+    <div class="block-title">
+        <h2><strong>Contacts</strong> List</h2>
+    </div>
+
+    <div class="table-responsive">
+        <table id='example-datatable' class="table table-vcenter table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th>Name</th>
+                    <th>Created Time</th>
+                    <th>Phone Number</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for cc in contacts %}
+                <tr>
+                    <td class="text-center">{{cc.id}}</td>
+                    <td>{{cc.name}}</td>
+                    <td>{{cc.created_date}}</td>
+                    <td>{{cc.phone}}</td>
+
+
+                    <td class="text-center">
+                        <div class="btn-group">
+
+                            <a href="{{url_for('contacts.contacts_edit',id=cc.id)}}" data-toggle="tooltip" title="Edit" class="btn btn-xs btn-primary"><i class="fa fa-pencil"> Edit</i></a>
+                            <a href="{{url_for('contacts.contacts_del',id=cc.id)}}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"> Delete</i></a>
+
+
+                        </div>
+                    </td>
+                </tr>
+
+
+               {% endfor %}
+            </tbody>
+
+        </table>
+
+</div>
+      </div>
+<!-- END Datatables Content -->
+<div class="block full">
+   <div class="block-title">
+       <h2><strong>Export</strong> Data</h2>
+   </div>
+
+   <div class="table-responsive">
+           <a href="{{url_for('contacts.export_contacts_csv')}}" data-toggle="tooltip" title="export csv file" class="btn btn-xs btn-default"> CSV</a>
+   </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+{% block footerblock %}
+
+      <script src="{{url_for('static',filename='back/js/pages/tablesDatatables.js')}}"></script>
+      <script>$(function(){ TablesDatatables.init(); });</script>
+{% endblock %}

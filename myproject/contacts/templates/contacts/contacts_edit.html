@@ -1,0 +1,85 @@
+
+{% extends 'base.html' %}
+
+
+
+
+
+{% block mainblock %}
+
+   <!-- Datatables Header -->
+   <div class="content-header">
+    <div class="header-section">
+        <h1>
+            <i class="fa fa-table"></i>Edit Contacts<br><small>you can add, edit and delete your data!</small>
+        </h1>
+    </div>
+</div>
+<ul class="breadcrumb breadcrumb-top">
+    <li>Contacts</li>
+    <li><a href="">Edit</a></li>
+</ul>
+<!-- END Datatables Header -->
+
+
+
+
+<div class="row">
+        <div class="col-md-12">
+            <!-- Basic Form Elements Block -->
+            <div class="block">
+                <!-- Basic Form Elements Title -->
+                <div class="block-title">
+
+                    <h2><strong>Edit</strong> Contacts</h2>
+                </div>
+                <!-- END Form Elements Title -->
+
+                <!-- Basic Form Elements Content -->
+                <form action="{{url_for('contacts.contacts_edit' , id =id)}}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+
+                    <div class="form-group">
+                            <div class="col-md-6">
+                                <input type="text" id="name" value="{{contact.name}}" name="name" class="form-control" placeholder="Name">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="phone" value="{{contact.phone}}" name="phone" class="form-control" placeholder="phone">
+
+
+                            </div>
+                        </div>
+
+
+                                <div class="form-group">
+                                        <div class="col-md-12">
+                                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Submit</button>
+                                            </div>
+
+                                    </div>
+
+
+
+
+
+
+                </form>
+                <!-- END Basic Form Elements Content -->
+            </div>
+            <!-- END Basic Form Elements Block -->
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
+
+
+
+
+{% block footerblock %}
+
+   <!-- Load and execute javascript code used only in this page -->
+   <script src="{{url_for('static',filename='back/js/pages/tablesDatatables.js' )}}"></script>
+   <script>$(function(){ TablesDatatables.init(); });</script>
+        {% endblock %}
