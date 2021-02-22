@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_restful import Api
 import os
 
 
@@ -12,6 +13,7 @@ app.config["SECRET_KEY"] = "mysecretkey"
 
 db = SQLAlchemy(app)
 Migrate(app, db)
+api=Api(app)
 
 from myproject.contacts.views import contacts_bluprint
 
